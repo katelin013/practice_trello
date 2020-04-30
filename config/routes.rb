@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  devise_for :users
+
+  resources :cards
+  resources :lists do
+    member do
+      put :move   #/lists/id/moved
+    end
+  end
+  root 'lists#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
