@@ -13,24 +13,11 @@ class ListsController < ApplicationController
     render 'show.json'
   end
 
-  # GET /lists/1
-  # GET /lists/1.json
-  def show
-  end
-
-  # GET /lists/new
-  def new
-    @list = List.new
-  end
-
-  # GET /lists/1/edit
-  def edit
-  end
-
   # POST /lists
   # POST /lists.json
   def create
-    @list = List.new(list_params)
+
+    @list = current_user.lists.new(list_params)
 
     respond_to do |format|
       if @list.save
